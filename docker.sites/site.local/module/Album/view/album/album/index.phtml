@@ -1,1 +1,11 @@
 Index
+
+<br>
+<br>
+<br>
+<?php foreach ($this->albums as $album) : ?>
+        <?= "Title: " . $this->escapeHtml($album->title) ?>
+        <?= "Artist: " .$this->escapeHtml($album->artist) ?>
+        <br>
+        <br>
+<?php endforeach; ?>
