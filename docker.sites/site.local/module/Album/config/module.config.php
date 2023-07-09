@@ -7,9 +7,8 @@ use Album\Model\AlbumTable;
 use Album\Model\AlbumTableGateway;
 use Album\Model\Factory\AlbumTableFactory;
 use Album\Model\Factory\AlbumTableGatewayFactory;
-use Laminas\Db\Adapter\AdapterInterface;
-use Laminas\Db\ResultSet\ResultSet;
-use Laminas\Db\TableGateway\TableGateway;
+use Album\Service\AlbumService;
+use Album\Service\Factory\AlbumServiceFactory;
 use Laminas\Router\Http\Segment;
 use Laminas\ServiceManager\Factory\InvokableFactory;
 
@@ -32,7 +31,6 @@ return [
             ],
         ],
     ],
-    
     "controllers" => [
         "factories" => [
             AlbumController::class => AlbumControllerFactory::class,
@@ -43,6 +41,7 @@ return [
             Album::class => InvokableFactory::class,
             AlbumTable::class => AlbumTableFactory::class,
             AlbumTableGateway::class => AlbumTableGatewayFactory::class,
+            AlbumService::class => AlbumServiceFactory::class,
         ]
     ],
     "view_manager" => [

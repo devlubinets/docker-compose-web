@@ -4,6 +4,7 @@ namespace Album\Controller\Factory;
 
 use Album\Controller\AlbumController;
 use Album\Model\AlbumTable;
+use Album\Service\AlbumService;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
@@ -24,6 +25,8 @@ class AlbumControllerFactory implements FactoryInterface
     {
         /** @var AlbumTable  $albumTable */
         $albumTable = $container->get(AlbumTable::class);
-        return new AlbumController($albumTable);
+        /** @var AlbumService $albumService */
+        $albumService = $container->get(AlbumService::class);
+        return new AlbumController($albumTable, $albumService);
     }
 }
