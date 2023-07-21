@@ -2,6 +2,7 @@
 
 namespace Album\Controller;
 
+use Album\Form\AlbumFirstForm;
 use Album\Model\AlbumTable;
 use Album\Service\AlbumService;
 use Album\Traits\Service\AlbumServiceTrait;
@@ -18,14 +19,19 @@ class AlbumController extends AbstractActionController
     /** @var AlbumService */
     protected AlbumService $albumService;
 
+    /** @var AlbumFirstForm $albumFirstForm */
+    protected AlbumFirstForm $albumFirstForm;
+
     /**
      * @param AlbumTable $albumTable
      * @param AlbumService $albumService
+     * @param AlbumFirstForm $albumFirstForm
      */
-    public function __construct(AlbumTable $albumTable, AlbumService $albumService)
+    public function __construct(AlbumTable $albumTable, AlbumService $albumService, AlbumFirstForm $albumFirstForm)
     {
         $this->albumTable = $albumTable;
         $this->albumService = $albumService;
+        $this->albumFirstForm = $albumFirstForm;
     }
 
     public function indexAction()
@@ -35,9 +41,12 @@ class AlbumController extends AbstractActionController
         ]);
     }
 
-    public function addAction()
+    /**
+     * @return ViewModel
+     */
+    public function addAction(): ViewModel
     {
-        return new ViewModel([]);
+        return new ViewModel(["albumFirstForm" => $this->getAlbumFirstForm()]);
     }
 
     public function editAction()
